@@ -9,7 +9,7 @@
     "build": "next build --webpack",
     "build:turbo": "next build --turbo",
     "clean": "node -e \"require('fs').rmSync('.next',{recursive:true,force:true});\"",
-    "start": "next start -p 5173",
+    "start": "next start",
     "lint": "eslint",
     "test": "vitest run"
   },
