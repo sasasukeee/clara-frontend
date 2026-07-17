@@ -11,8 +11,8 @@ const cx = (...classes: Array<string | false | null | undefined>) =>
 
 export function AuthLegalLinks({
   className,
-  termsHref = "/kullanim-sartlari",
-  privacyHref = "/gizlilik-politikasi",
+  termsHref = "/terms",
+  privacyHref = "/privacy",
 }: Props) {
   const linkClassName =
     "font-medium no-underline underline-offset-4 transition-colors hover:underline focus-visible:underline focus-visible:outline-none";
@@ -25,11 +25,11 @@ export function AuthLegalLinks({
       )}
     >
       <Link href={termsHref} className={linkClassName}>
-        Kullanım şartları
+        Terms of service
       </Link>
       <span className="text-text-secondary/40 dark:text-white/40">|</span>
       <Link href={privacyHref} className={linkClassName}>
-        Gizlilik politikası
+        Privacy policy
       </Link>
     </div>
   );

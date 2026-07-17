@@ -25,7 +25,7 @@ export default function Page() {
 
   return (
     <div className="min-h-screen bg-[var(--background)] text-foreground">
-      <h1 className="sr-only">Başarılı</h1>
+      <h1 className="sr-only">Success</h1>
     </div>
   );
 }

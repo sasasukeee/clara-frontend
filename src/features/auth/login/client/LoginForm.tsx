@@ -155,7 +155,7 @@ export function LoginForm() {
   return (
     <form className="flex flex-col gap-5" onSubmit={handleSubmit}>
       <Input
-        label="E-posta veya kullanıcı adı"
+        label="Email or username"
         value={form.identifier}
         onChange={handleChange("identifier")}
         required
@@ -174,7 +174,7 @@ export function LoginForm() {
         spellCheck={false}
       />
       <Input
-        label="Parola"
+        label="Password"
         type={showPassword ? "text" : "password"}
         value={form.password}
         onChange={handleChange("password")}
@@ -193,7 +193,7 @@ export function LoginForm() {
             <EyeOffIcon className="h-[26px] w-[26px]" />
           )
         }
-        endIconAriaLabel={showPassword ? "Parolayı gizle" : "Parolayı göster"}
+        endIconAriaLabel={showPassword ? "Hide password" : "Show password"}
         onEndIconClick={() => setShowPassword((prev) => !prev)}
       />
 
@@ -212,7 +212,7 @@ export function LoginForm() {
         }
         className="auth-cta group mx-auto mt-2 h-[70px] max-w-lg rounded-[32px] px-10 text-[18px] font-normal border border-border-color shadow-sm transition-colors active:bg-slate-200 focus-visible:outline-black"
       >
-        {isSubmitting ? "Gönderiliyor..." : "Devam et"}
+        {isSubmitting ? "Submitting..." : "Continue"}
       </Button>
     </form>
   );

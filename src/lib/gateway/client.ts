@@ -84,11 +84,11 @@ const inferErrorMessage = (
   }
   if (status === 401) {
     if (context.method === "POST" && context.path === "/auth/login") {
-      return "Kullanıcı adı/e-posta veya parola hatalı.";
+      return "Incorrect username/email or password.";
     }
-    return "Oturum süreniz doldu. Lütfen tekrar giriş yapın.";
+    return "Your session has expired. Please log in again.";
   }
-  return "Bir hata oluştu. Lütfen tekrar deneyin.";
+  return "An error occurred. Please try again.";
 };
 
 const DEFAULT_TIMEOUT_MS = 30_000;
@@ -224,8 +224,8 @@ export async function gatewayRequestJson<T>(
     throw new GatewayError({
       code: isAbortError ? "TIMEOUT" : "NETWORK",
       message: isAbortError
-        ? "İstek zaman aşımına uğradı. Lütfen tekrar deneyin."
-        : "Ağ hatası oluştu. Lütfen tekrar deneyin.",
+        ? "Request timed out. Please try again."
+        : "A network error occurred. Please try again.",
       status: 0,
       body: null,
       requestId,
@@ -264,7 +264,7 @@ export async function gatewayRequestJson<T>(
     if (options.schema) {
       throw new GatewayError({
         code: "INVALID_RESPONSE",
-        message: "Beklenmeyen sunucu yanıtı. Lütfen tekrar deneyin.",
+        message: "Unexpected server response. Please try again.",
         status: 0,
         body: { reason: "Expected JSON response." },
         requestId,
@@ -283,7 +283,7 @@ export async function gatewayRequestJson<T>(
     } catch {
       throw new GatewayError({
         code: "INVALID_RESPONSE",
-        message: "Beklenmeyen sunucu yanıtı. Lütfen tekrar deneyin.",
+        message: "Unexpected server response. Please try again.",
         status: 0,
         body: { reason: "Invalid JSON response.", raw: raw.slice(0, 500) },
         requestId,
@@ -305,7 +305,7 @@ export async function gatewayRequestJson<T>(
     }
     throw new GatewayError({
       code: "INVALID_RESPONSE",
-      message: "Beklenmeyen sunucu yanıtı. Lütfen tekrar deneyin.",
+      message: "Unexpected server response. Please try again.",
       status: 0,
       body: { reason: "Schema validation failed.", error: parsed.error },
       requestId,

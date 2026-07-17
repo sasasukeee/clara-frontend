@@ -9,7 +9,7 @@ export type IdentityCredentialsDto = z.infer<typeof IdentityCredentialsSchema>;
 
 export const IdentityRegisterSchema = z.object({
   email: z.string().email(),
-  password: z.string().min(1).regex(/^\S+$/, "Parola boşluk içeremez."),
+  password: z.string().min(1).regex(/^\S+$/, "Password cannot contain spaces."),
   firstName: z.string().min(1).optional(),
   lastName: z.string().min(1).optional(),
   username: z.string().min(1).optional(),
@@ -23,7 +23,7 @@ export const IdentityUpdateSchema = z.object({
   password: z
     .string()
     .min(1)
-    .regex(/^\S+$/, "Parola boşluk içeremez.")
+    .regex(/^\S+$/, "Password cannot contain spaces.")
     .optional(),
   firstName: z.string().min(1).optional(),
   lastName: z.string().min(1).optional(),

@@ -71,7 +71,7 @@ export function GoogleOAuthCallbackPage({ callbackPath }: Props) {
           }
         }
 
-        setErrorMessage("Google oturum açma bilgisi alınamadı. Lütfen tekrar deneyin.");
+        setErrorMessage("Failed to retrieve Google login information. Please try again.");
       } catch (error) {
         setErrorMessage(getUserMessageForAppError(toAppError(error)));
       } finally {
@@ -85,11 +85,11 @@ export function GoogleOAuthCallbackPage({ callbackPath }: Props) {
   return (
     <div className="min-h-screen bg-[var(--background)] px-6 py-12 text-foreground sm:px-8">
       <div className="mx-auto w-full max-w-lg pt-20 text-center">
-        <h1 className="text-2xl font-black tracking-tight">Google ile giriş</h1>
+        <h1 className="text-2xl font-black tracking-tight">Sign in with Google</h1>
 
         {isLoading ? (
           <p className="mt-4 text-base text-slate-500 dark:text-slate-400">
-            Google hesabınız doğrulanıyor...
+            Verifying your Google account...
           </p>
         ) : errorMessage ? (
           <>
@@ -99,20 +99,20 @@ export function GoogleOAuthCallbackPage({ callbackPath }: Props) {
                 href="/login"
                 className="font-semibold text-primary no-underline underline-offset-4 decoration-transparent transition-colors hover:underline hover:text-primary-hover focus-visible:underline focus-visible:outline-none"
               >
-                Giriş sayfasına dön
+                Back to login
               </Link>
               <span className="text-text-secondary/40">|</span>
               <Link
                 href="/signup"
                 className="font-semibold text-primary no-underline underline-offset-4 decoration-transparent transition-colors hover:underline hover:text-primary-hover focus-visible:underline focus-visible:outline-none"
               >
-                Kayıt ol
+                Sign up
               </Link>
             </div>
           </>
         ) : (
           <p className="mt-4 text-base text-slate-500 dark:text-slate-400">
-            Yönlendiriliyorsunuz...
+            Redirecting...
           </p>
         )}
       </div>

@@ -25,18 +25,18 @@ export function ProfileOnboardingPage() {
   const { t } = useTranslation();
   
   const MONTHS = useMemo(() => [
-    { value: 1, label: "Ocak" },
-    { value: 2, label: "Şubat" },
-    { value: 3, label: "Mart" },
-    { value: 4, label: "Nisan" },
-    { value: 5, label: "Mayıs" },
-    { value: 6, label: "Haziran" },
-    { value: 7, label: "Temmuz" },
-    { value: 8, label: "Ağustos" },
-    { value: 9, label: "Eylül" },
-    { value: 10, label: "Ekim" },
-    { value: 11, label: "Kasım" },
-    { value: 12, label: "Aralık" },
+    { value: 1, label: "January" },
+    { value: 2, label: "February" },
+    { value: 3, label: "March" },
+    { value: 4, label: "April" },
+    { value: 5, label: "May" },
+    { value: 6, label: "June" },
+    { value: 7, label: "July" },
+    { value: 8, label: "August" },
+    { value: 9, label: "September" },
+    { value: 10, label: "October" },
+    { value: 11, label: "November" },
+    { value: 12, label: "December" },
   ], []);
 
   const [userId, setUserId] = useState<string | null>(null);
@@ -162,9 +162,9 @@ export function ProfileOnboardingPage() {
 
   const birthdateError = useMemo(() => {
     if (!birthdateParts.year || !birthdateParts.month || !birthdateParts.day) {
-      return "Doğum tarihi zorunlu.";
+      return "Birthdate is required.";
     }
-    if (!birthdateValue) return "Geçerli bir tarih seç.";
+    if (!birthdateValue) return "Select a valid date.";
     return null;
   }, [birthdateParts.day, birthdateParts.month, birthdateParts.year, birthdateValue]);
 
@@ -194,7 +194,7 @@ export function ProfileOnboardingPage() {
     const needsBirthdateWrite = !hasExistingBirthdate;
 
     if (needsBirthdateWrite && !birthdateIso) {
-      setErrorMessage("Doğum tarihi zorunlu.");
+      setErrorMessage("Birthdate is required.");
       return;
     }
 
@@ -234,8 +234,8 @@ export function ProfileOnboardingPage() {
 
         {step === "done" && (
           <header className="w-full max-w-xl space-y-2 text-center">
-            <h1 className="text-3xl font-black tracking-tight">Tamam!</h1>
-            <p className="text-sm text-text-secondary">Bilgilerin kaydedildi.</p>
+            <h1 className="text-3xl font-black tracking-tight">Done!</h1>
+            <p className="text-sm text-text-secondary">Your information has been saved.</p>
           </header>
         )}
 
@@ -258,11 +258,11 @@ export function ProfileOnboardingPage() {
                 <>
                   <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
                     <Select
-                      label="Gün"
+                      label="Day"
                       value={birthdateParts.day}
                       onChange={(next) => setBirthdatePart("day", next)}
                       options={[
-                        { value: "", label: "Seç" },
+                        { value: "", label: "Select" },
                         ...Array.from({ length: daysInSelectedMonth }, (_, index) => ({
                           value: String(index + 1),
                           label: String(index + 1),
@@ -270,11 +270,11 @@ export function ProfileOnboardingPage() {
                       ]}
                     />
                     <Select
-                      label="Ay"
+                      label="Month"
                       value={birthdateParts.month}
                       onChange={(next) => setBirthdatePart("month", next)}
                       options={[
-                        { value: "", label: "Seç" },
+                        { value: "", label: "Select" },
                         ...MONTHS.map((month) => ({
                           value: String(month.value),
                           label: month.label,
@@ -282,11 +282,11 @@ export function ProfileOnboardingPage() {
                       ]}
                     />
                     <Select
-                      label="Yıl"
+                      label="Year"
                       value={birthdateParts.year}
                       onChange={(next) => setBirthdatePart("year", next)}
                       options={[
-                        { value: "", label: "Seç" },
+                        { value: "", label: "Select" },
                         ...years.map((year) => ({
                           value: String(year),
                           label: String(year),
@@ -351,11 +351,11 @@ export function ProfileOnboardingPage() {
                 value={gender}
                 onChange={(next) => setGender(next as GenderValue)}
                 options={[
-                  { value: "", label: t.profile.genderPreferNotToSay },
+                  { value: "", label: "Select gender" },
                   { value: "female", label: t.profile.genderFemale },
                   { value: "male", label: t.profile.genderMale },
                   { value: "other", label: t.profile.genderOther },
-                  { value: "prefer_not_to_say", label: "Belirtmek istemiyorum" },
+                  { value: "prefer_not_to_say", label: t.profile.genderPreferNotToSay },
                 ]}
               />
 
@@ -367,7 +367,7 @@ export function ProfileOnboardingPage() {
                   disabled={isSubmitting || !hasExistingBirthdate}
                   onClick={() => saveProfile("skip")}
                 >
-                  Atla
+                  Skip
                 </Button>
                 <Button
                   type="button"

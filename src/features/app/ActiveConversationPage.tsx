@@ -310,7 +310,7 @@ export function ActiveConversationPage({ initialConversationId }: ActiveConversa
   }, []);
 
   const sidebarName =
-    profile?.first_name?.trim() || me?.username?.trim() || "Kullanıcı";
+    profile?.first_name?.trim() || me?.username?.trim() || "User";
   const sidebarSubtitle = me?.email?.trim() || "—";
   const sidebarAvatarUrl = useMemo(() => {
     const fromProfile = profile?.avatar_url?.trim();
@@ -527,7 +527,7 @@ const buildAttachmentUrl = (conversationId: string, messageId: string, attachmen
       const data = await listChatConversations();
       const normalized = data.map<Conversation>((item) => ({
         id: item.id,
-        title: item.title?.trim() || "Yeni sohbet",
+        title: item.title?.trim() || "New chat",
         createdAt: item.created_at,
         lastMessageAt: item.last_message_at ?? undefined,
       }));
@@ -592,7 +592,7 @@ const buildAttachmentUrl = (conversationId: string, messageId: string, attachmen
       const created = await createChatConversation({});
       const convo: Conversation = {
         id: created.id,
-        title: created.title?.trim() || "Yeni sohbet",
+        title: created.title?.trim() || "New chat",
         createdAt: created.created_at,
         lastMessageAt: created.last_message_at ?? undefined,
       };
@@ -796,8 +796,8 @@ const buildAttachmentUrl = (conversationId: string, messageId: string, attachmen
               <MaterialIcon name="cloud_upload" className="text-[42px]" />
             </div>
             <div className="text-center space-y-1">
-              <p className="text-xl font-semibold tracking-tight">Fotoğrafı buraya sürükle</p>
-              <p className="text-sm text-white/80">Bıraktığında seçilecek</p>
+              <p className="text-xl font-semibold tracking-tight">Drag photo here</p>
+              <p className="text-sm text-white/80">It will be selected when you drop it</p>
             </div>
           </div>
         </div>
@@ -818,8 +818,8 @@ const buildAttachmentUrl = (conversationId: string, messageId: string, attachmen
             "flex items-center justify-center",
           )}
           onClick={() => setIsSidebarCollapsed((prev) => !prev)}
-          title={isSidebarCollapsed ? "Sidebar'ı aç" : "Sidebar'ı daralt"}
-          aria-label={isSidebarCollapsed ? "Sidebar'ı aç" : "Sidebar'ı daralt"}
+          title={isSidebarCollapsed ? "Open sidebar" : "Collapse sidebar"}
+          aria-label={isSidebarCollapsed ? "Open sidebar" : "Collapse sidebar"}
         >
           <MaterialIcon
             name={isSidebarCollapsed ? "chevron_right" : "chevron_left"}
@@ -880,8 +880,8 @@ const buildAttachmentUrl = (conversationId: string, messageId: string, attachmen
                   "text-text-secondary hover:text-foreground hover:bg-foreground/6 active:bg-foreground/10",
                 )}
                 onClick={() => setIsSidebarCollapsed((prev) => !prev)}
-                title="Sidebar'ı daralt"
-                aria-label="Sidebar'ı daralt"
+                title="Collapse sidebar"
+                aria-label="Collapse sidebar"
               >
                 <MaterialIcon name="dock_to_left" className="text-[20px]" />
               </button>
@@ -1080,7 +1080,7 @@ const buildAttachmentUrl = (conversationId: string, messageId: string, attachmen
                 <div className="min-w-0 overflow-hidden">
                   <p className="text-sm font-semibold text-foreground truncate">{sidebarName}</p>
                   <p className="text-xs text-text-secondary truncate">
-                    {identityLoading ? "Yükleniyor..." : identityError ? "Bağlantı hatası" : sidebarSubtitle}
+                    {identityLoading ? "Loading..." : identityError ? "Connection error" : sidebarSubtitle}
                   </p>
                 </div>
               </button>
@@ -1114,7 +1114,7 @@ const buildAttachmentUrl = (conversationId: string, messageId: string, attachmen
                 }}
               >
                 <MaterialIcon name="settings" className="text-[18px] text-text-secondary" />
-                Ayarlar
+                Settings
               </button>
               <button
                 type="button"
@@ -1123,7 +1123,7 @@ const buildAttachmentUrl = (conversationId: string, messageId: string, attachmen
                 disabled={isLoggingOut}
               >
                 <MaterialIcon name="logout" className="text-[18px] text-text-secondary" />
-                {isLoggingOut ? "Çıkış yapılıyor..." : t.common.logout}
+                {isLoggingOut ? "Logging out..." : t.common.logout}
               </button>
               {logoutError && <p className="px-3 pt-2 pb-1 text-xs text-red-500">{logoutError}</p>}
             </div>
@@ -1145,7 +1145,7 @@ const buildAttachmentUrl = (conversationId: string, messageId: string, attachmen
             <div className="flex items-center gap-4 w-full my-6 px-4 md:px-8">
               <div className="h-px bg-border-color flex-1" />
               <span className="text-xs text-text-secondary font-medium">
-                {latestMessageLabel || "Sohbet"}
+                {latestMessageLabel || "Chat"}
               </span>
               <div className="h-px bg-border-color flex-1" />
             </div>
@@ -1163,7 +1163,7 @@ const buildAttachmentUrl = (conversationId: string, messageId: string, attachmen
                       {message.attachments?.length ? (
                         <div className="mt-3">
                           <div className="text-[11px] text-text-secondary mb-1">
-                            {message.attachments[0]?.filename || "Görsel"}
+                            {message.attachments[0]?.filename || "Image"}
                           </div>
                           <div className="overflow-hidden rounded-xl border border-border-color bg-black/20 max-w-sm">
                             {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -1175,7 +1175,7 @@ const buildAttachmentUrl = (conversationId: string, messageId: string, attachmen
                               />
                             ) : (
                               <div className="p-6 text-center text-xs text-text-secondary">
-                                Önizleme yok
+                                No preview
                               </div>
                             )}
                           </div>
@@ -1208,7 +1208,7 @@ const buildAttachmentUrl = (conversationId: string, messageId: string, attachmen
                       {message.attachments?.length ? (
                         <div className="mt-4">
                           <div className="text-[11px] text-text-secondary mb-2 font-medium tracking-wide">
-                            {message.attachments[0]?.filename || "Analiz Sonucu"}
+                            {message.attachments[0]?.filename || "Analysis Result"}
                           </div>
                           <div className="overflow-hidden rounded-2xl border border-border-color/60 bg-black/30 shadow-lg max-w-lg transition-transform hover:scale-[1.01] duration-300">
                             {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -1220,7 +1220,7 @@ const buildAttachmentUrl = (conversationId: string, messageId: string, attachmen
                               />
                             ) : (
                               <div className="p-8 text-center text-sm text-text-secondary">
-                                Görsel işleniyor...
+                                Processing image...
                               </div>
                             )}
                           </div>
@@ -1240,7 +1240,7 @@ const buildAttachmentUrl = (conversationId: string, messageId: string, attachmen
                           <button 
                             type="button"
                             className="w-7 h-7 rounded-md hover:bg-foreground/5 text-text-secondary hover:text-foreground flex items-center justify-center transition-colors"
-                            title="Yeniden Üret"
+                            title="Regenerate"
                           >
                             <MaterialIcon name="refresh" className="text-[17px]" />
                           </button>
@@ -1349,7 +1349,7 @@ const buildAttachmentUrl = (conversationId: string, messageId: string, attachmen
                   </div>
                 </div>
                 <div className="flex items-center gap-2">
-                  <span className="text-[11px] text-text-secondary">Enter ile gönder</span>
+                  <span className="text-[11px] text-text-secondary">Send with Enter</span>
                   <button
                     type="button"
                     className="cursor-pointer h-7 w-7 rounded-full hover:bg-foreground/10 text-text-secondary hover:text-foreground flex items-center justify-center"
@@ -1359,7 +1359,7 @@ const buildAttachmentUrl = (conversationId: string, messageId: string, attachmen
                       setSelectedFileName(null);
                       setSelectedFilePreview(null);
                     }}
-                    title="Seçili görseli kaldır"
+                    title="Remove selected image"
                   >
                     <MaterialIcon name="close" className="text-[16px]" />
                   </button>
@@ -1370,7 +1370,7 @@ const buildAttachmentUrl = (conversationId: string, messageId: string, attachmen
               <button
                 type="button"
                 className="cursor-pointer h-8 w-8 text-text-secondary hover:text-foreground hover:bg-surface-dark rounded-full transition-colors flex items-center justify-center shrink-0 mb-0.5"
-                title="Dosya ekle"
+                title="Add file"
                 onClick={openUploadPicker}
               >
                 <MaterialIcon name="add" className="text-[22px]" />
@@ -1394,8 +1394,8 @@ const buildAttachmentUrl = (conversationId: string, messageId: string, attachmen
                 <button
                   type="button"
                   className="cursor-pointer h-8 w-8 text-text-secondary hover:text-foreground hover:bg-surface-dark rounded-full transition-colors flex items-center justify-center"
-                  title="Mikrofon"
-                  aria-label="Mikrofon"
+                  title="Microphone"
+                  aria-label="Microphone"
                 >
                   <MaterialIcon name="mic" className="text-[20px]" />
                 </button>
@@ -1407,7 +1407,7 @@ const buildAttachmentUrl = (conversationId: string, messageId: string, attachmen
                       ? "bg-foreground text-surface-lighter hover:opacity-90 active:scale-95"
                       : "bg-surface-dark text-text-secondary/50 cursor-default"
                   )}
-                  title="Gönder"
+                  title="Send"
                   onClick={() => void handleSendMessage()}
                   disabled={isSending || (!composerText.trim() && !selectedFile)}
                 >
@@ -1509,15 +1509,15 @@ const buildAttachmentUrl = (conversationId: string, messageId: string, attachmen
                         <div className="text-sm text-text-secondary mt-1">{sidebarSubtitle}</div>
                         <div className="inline-flex items-center gap-1.5 mt-3 px-2.5 py-1 rounded-full bg-emerald-500/10 text-xs text-emerald-500 font-semibold border border-emerald-500/20">
                           <MaterialIcon name="verified" className="text-[14px]" />
-                          Aktif Üye
+                          Active Member
                         </div>
                       </div>
                     </div>
 
                     <div className="flex items-center justify-between gap-4 py-2 border-b border-border-color/10 pb-6">
                       <div>
-                        <div className="text-sm font-medium text-foreground">Doğum tarihi</div>
-                        <div className="text-xs text-text-secondary mt-1">Profilinizde görüntülenir</div>
+                        <div className="text-sm font-medium text-foreground">Birthdate</div>
+                        <div className="text-xs text-text-secondary mt-1">Visible on your profile</div>
                       </div>
                       <input
                         type="date"
@@ -1529,18 +1529,18 @@ const buildAttachmentUrl = (conversationId: string, messageId: string, attachmen
 
                     <div className="flex items-center justify-between gap-4 py-2 border-b border-border-color/10 pb-6">
                       <div>
-                        <div className="text-sm font-medium text-foreground">Cinsiyet</div>
-                        <div className="text-xs text-text-secondary mt-1">İsteğe bağlı</div>
+                        <div className="text-sm font-medium text-foreground">Gender</div>
+                        <div className="text-xs text-text-secondary mt-1">Optional</div>
                       </div>
                       <Select
                         value={profileDraft.gender}
                         onChange={(next) => setProfileDraft((p) => ({ ...p, gender: next as ProfileDraft["gender"] }))}
                         options={[
-                          { value: "", label: "Belirtmek istemiyorum" },
-                          { value: "female", label: "Kadın" },
-                          { value: "male", label: "Erkek" },
-                          { value: "other", label: "Diğer" },
-                          { value: "prefer_not_to_say", label: "Gizli tut" },
+                          { value: "", label: "Prefer not to say" },
+                          { value: "female", label: "Female" },
+                          { value: "male", label: "Male" },
+                          { value: "other", label: "Other" },
+                          { value: "prefer_not_to_say", label: "Prefer not to say" },
                         ]}
                         size="sm"
                       />
@@ -1553,21 +1553,21 @@ const buildAttachmentUrl = (conversationId: string, messageId: string, attachmen
                   <div className="p-8 space-y-0">
                     <div className="flex items-center justify-between gap-4 py-6 border-b border-border-color/10">
                       <div>
-                        <div className="text-sm font-medium text-foreground">Tema</div>
+                        <div className="text-sm font-medium text-foreground">Theme</div>
                       </div>
                       <Select
                         value={settingsDraft.theme}
                         onChange={(next) => setSettingsDraft((p) => ({ ...p, theme: next }))}
                         options={[
-                          { value: "light", label: "Açık" },
-                          { value: "dark", label: "Koyu" },
+                          { value: "light", label: "Light" },
+                          { value: "dark", label: "Dark" },
                         ]}
                         size="sm"
                       />
                     </div>
                     <div className="flex items-center justify-between gap-4 py-6 border-b border-border-color/10">
                       <div>
-                        <div className="text-sm font-medium text-foreground">Dil</div>
+                        <div className="text-sm font-medium text-foreground">Language</div>
                       </div>
                       <input
                         value={settingsDraft.language}
@@ -1585,8 +1585,8 @@ const buildAttachmentUrl = (conversationId: string, messageId: string, attachmen
                   <div className="p-8 space-y-0">
                     <div className="flex items-center justify-between gap-4 py-6 border-b border-border-color/10">
                       <div>
-                        <div className="text-sm font-medium text-foreground">Uygulama bildirimleri</div>
-                        <div className="text-xs text-text-secondary mt-1">Yeni mesaj ve güncellemeler için bildirim al</div>
+                        <div className="text-sm font-medium text-foreground">App notifications</div>
+                        <div className="text-xs text-text-secondary mt-1">Get notifications for new messages and updates</div>
                       </div>
                       <button
                         type="button"
@@ -1610,7 +1610,7 @@ const buildAttachmentUrl = (conversationId: string, messageId: string, attachmen
                   <div className="p-8 space-y-0">
                     <div className="flex items-center justify-between gap-4 py-6 border-b border-border-color/10">
                       <div>
-                        <div className="text-sm font-medium text-foreground">Saat dilimi</div>
+                        <div className="text-sm font-medium text-foreground">Time zone</div>
                       </div>
                       <input
                         value={settingsDraft.time_zone}
@@ -1621,21 +1621,21 @@ const buildAttachmentUrl = (conversationId: string, messageId: string, attachmen
                     </div>
                     <div className="flex items-center justify-between gap-4 py-6 border-b border-border-color/10">
                       <div>
-                        <div className="text-sm font-medium text-foreground">Saat formatı</div>
+                        <div className="text-sm font-medium text-foreground">Time format</div>
                       </div>
                       <Select
                         value={settingsDraft.time_format}
                         onChange={(next) => setSettingsDraft((p) => ({ ...p, time_format: next }))}
                         options={[
-                          { value: "24h", label: "Sistem" },
-                          { value: "12h", label: "12 saat" },
+                          { value: "24h", label: "System" },
+                          { value: "12h", label: "12 hours" },
                         ]}
                         size="sm"
                       />
                     </div>
                     <div className="flex items-center justify-between gap-4 py-6 border-b border-border-color/10">
                       <div>
-                        <div className="text-sm font-medium text-foreground">Yerel ayar</div>
+                        <div className="text-sm font-medium text-foreground">Locale</div>
                       </div>
                       <input
                         value={settingsDraft.locale}
@@ -1652,7 +1652,7 @@ const buildAttachmentUrl = (conversationId: string, messageId: string, attachmen
               <div className="flex items-center justify-between border-t border-border-color/10 px-10 py-6 shrink-0 bg-surface-lighter">
                 <div className="flex items-center gap-2 text-xs font-medium text-text-secondary/60">
                   <MaterialIcon name="lock" className="text-[16px]" />
-                  Tüm ayarlar şifreli saklanır
+                  All settings are stored encrypted
                 </div>
                 <div className="flex items-center gap-3">
                   <button
@@ -1661,7 +1661,7 @@ const buildAttachmentUrl = (conversationId: string, messageId: string, attachmen
                     disabled={isSaving}
                     className="cursor-pointer px-6 py-2.5 rounded-xl text-sm font-semibold text-text-secondary hover:text-foreground hover:bg-foreground/5 active:bg-foreground/10 transition-all"
                   >
-                    Vazgeç
+                    Cancel
                   </button>
                   <button
                     type="button"
@@ -1672,9 +1672,9 @@ const buildAttachmentUrl = (conversationId: string, messageId: string, attachmen
                     {isSaving ? (
                       <>
                         <span className="w-4 h-4 border-2 border-primary-foreground/30 border-t-primary-foreground rounded-full animate-spin" />
-                        Kaydediliyor
+                        Saving
                       </>
-                    ) : "Kaydet"}
+                    ) : "Save"}
                   </button>
                 </div>
               </div>

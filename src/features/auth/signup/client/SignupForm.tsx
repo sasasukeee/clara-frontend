@@ -138,7 +138,7 @@ export function SignupForm() {
     event.preventDefault();
     setErrorMessage(null);
     if (hasPasswordWhitespace) {
-      setErrorMessage("Parola boşluk içeremez.");
+      setErrorMessage("Password cannot contain spaces.");
       return;
     }
     setIsSubmitting(true);
@@ -224,7 +224,7 @@ export function SignupForm() {
             <EyeOffIcon className="h-[26px] w-[26px]" />
           )
         }
-        endIconAriaLabel={showPassword ? "Parolayı gizle" : "Parolayı göster"}
+        endIconAriaLabel={showPassword ? "Hide password" : "Show password"}
         onEndIconClick={() => setShowPassword((prev) => !prev)}
       />
 

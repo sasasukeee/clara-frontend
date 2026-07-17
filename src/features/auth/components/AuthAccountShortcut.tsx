@@ -10,8 +10,8 @@ const cx = (...classes: Array<string | false | null | undefined>) =>
 
 export function AuthAccountShortcut({ kind, className }: Props) {
   const href = kind === "login" ? "/signup" : "/login";
-  const prefix = kind === "login" ? "Hesabın yok mu?" : "Hesabın var mı?";
-  const label = kind === "login" ? "Kayıt ol" : "Giriş yap";
+  const prefix = kind === "login" ? "Don't have an account?" : "Already have an account?";
+  const label = kind === "login" ? "Sign up" : "Log in";
 
   const linkClassName =
     "font-semibold text-primary no-underline underline-offset-4 decoration-transparent transition-colors hover:underline hover:text-primary-hover focus-visible:underline focus-visible:outline-none active:underline";

@@ -5,7 +5,7 @@ type Props = {
   helpHref?: string;
 };
 
-export function AuthTopBar({ brandHref = "/", helpHref = "/yardim" }: Props) {
+export function AuthTopBar({ brandHref = "/", helpHref = "/help" }: Props) {
   const linkClassName =
     "rounded-full px-2 py-1 no-underline underline-offset-4 transition-colors hover:underline focus-visible:underline focus-visible:outline-none";
 
@@ -22,7 +22,7 @@ export function AuthTopBar({ brandHref = "/", helpHref = "/yardim" }: Props) {
           href={helpHref}
           className={`${linkClassName} text-lg font-semibold`}
         >
-          Yardım
+          Help
         </Link>
       </div>
     </div>

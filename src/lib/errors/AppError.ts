@@ -59,13 +59,13 @@ export const toAppError = (error: unknown): AppError => {
   if (error instanceof Error) {
     return new AppError({
       code: "UNKNOWN",
-      message: error.message || "Bir hata oluştu. Lütfen tekrar deneyin.",
+      message: error.message || "An error occurred. Please try again.",
       cause: error,
     });
   }
   return new AppError({
     code: "UNKNOWN",
-    message: "Bir hata oluştu. Lütfen tekrar deneyin.",
+    message: "An error occurred. Please try again.",
     details: error,
   });
 };
@@ -80,27 +80,27 @@ export const getUserMessageForAppError = (error: AppError) => {
 
   switch (error.code) {
     case "TIMEOUT":
-      return `İstek zaman aşımına uğradı. Lütfen tekrar deneyin.${suffix}`;
+      return `Request timed out. Please try again.${suffix}`;
     case "NETWORK":
-      return `Ağ hatası oluştu. Lütfen tekrar deneyin.${suffix}`;
+      return `A network error occurred. Please try again.${suffix}`;
     case "UNAUTHORIZED":
-      return `Oturum süreniz doldu. Lütfen tekrar giriş yapın.${suffix}`;
+      return `Your session has expired. Please log in again.${suffix}`;
     case "FORBIDDEN":
-      return `Bu işlem için yetkiniz yok.${suffix}`;
+      return `You do not have permission for this action.${suffix}`;
     case "NOT_FOUND":
-      return `İstenen kaynak bulunamadı.${suffix}`;
+      return `Requested resource not found.${suffix}`;
     case "RATE_LIMITED":
-      return `Çok fazla istek atıldı. Lütfen biraz sonra tekrar deneyin.${suffix}`;
+      return `Too many requests. Please try again later.${suffix}`;
     case "VALIDATION":
-      return `Girilen bilgiler geçersiz. Lütfen kontrol edin.${suffix}`;
+      return `Invalid information entered. Please check.${suffix}`;
     case "INVALID_RESPONSE":
-      return `Sunucudan beklenmeyen yanıt alındı. Lütfen tekrar deneyin.${suffix}`;
+      return `Unexpected response from the server. Please try again.${suffix}`;
     case "UPSTREAM":
       if (error.status === 502 || error.status === 503) {
-        return `Sunucuya ulaşılamadı. Lütfen tekrar deneyin.${suffix}`;
+        return `Server unreachable. Please try again.${suffix}`;
       }
-      return `Sunucu hatası oluştu. Lütfen tekrar deneyin.${suffix}`;
+      return `A server error occurred. Please try again.${suffix}`;
     default:
-      return `Bir hata oluştu. Lütfen tekrar deneyin.${suffix}`;
+      return `An error occurred. Please try again.${suffix}`;
   }
 };

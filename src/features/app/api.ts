@@ -169,7 +169,7 @@ export async function appendChatMessageWithAttachment(
         ? bodyAsObject.message
         : typeof body === "string" && body.trim()
           ? body
-          : "Dosya yüklenemedi. Lütfen tekrar deneyin.");
+          : "Failed to upload file. Please try again.");
     throw new GatewayError({
       message,
       status: response.status,
@@ -185,7 +185,7 @@ export async function appendChatMessageWithAttachment(
   const parsedArray = ChatMessageSchema.array().safeParse(body);
   if (!parsedArray.success) {
     throw new GatewayError({
-      message: "Geçersiz yanıt alındı",
+      message: "Invalid response received",
       status: 500,
       body,
       requestId: responseRequestId,
