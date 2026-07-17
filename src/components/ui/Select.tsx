@@ -12,7 +12,7 @@ type SelectOption = {
 };
 
 type SelectProps = {
-  label: string;
+  label?: string;
   value: string;
   options: SelectOption[];
   onChange: (value: string) => void;

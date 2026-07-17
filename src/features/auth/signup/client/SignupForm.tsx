@@ -9,7 +9,7 @@ import { getUserMessageForAppError, toAppError } from "@/lib/errors/AppError";
 
 import { useTranslation } from "@/lib/i18n/I18nProvider";
 
-import { register, type RegisterPayload } from "../../api";
+import { signup } from "../../api";
 
 type IconProps = { className?: string };
 
@@ -116,7 +116,7 @@ const ArrowRightIcon = ({ className }: IconProps) => (
 export function SignupForm() {
   const { t } = useTranslation();
   const router = useRouter();
-  const [form, setForm] = useState<RegisterPayload>({
+  const [form, setForm] = useState({
     email: "",
     firstName: "",
     lastName: "",
@@ -143,7 +143,11 @@ export function SignupForm() {
     }
     setIsSubmitting(true);
     try {
-      await register(form);
+      await signup({
+        email: form.email,
+        username: `${form.firstName.trim()}${form.lastName.trim()}`.toLowerCase(),
+        password: form.password
+      });
       router.push("/auth/success");
     } catch (error) {
       setErrorMessage(getUserMessageForAppError(toAppError(error)));
@@ -153,7 +157,7 @@ export function SignupForm() {
   };
 
   const handleChange =
-    (field: keyof RegisterPayload) =>
+    (field: keyof typeof form) =>
       (event: ChangeEvent<HTMLInputElement>) => {
         setForm((prev) => ({ ...prev, [field]: event.target.value }));
       };

@@ -124,7 +124,7 @@ export function ActiveConversationPage({ initialConversationId }: ActiveConversa
   const [settings, setSettings] = useState<SettingsDraft | null>(null);
 
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
-  const [activeSettingsTab, setActiveSettingsTab] = useState<"profile" | "settings">("profile");
+  const [activeSettingsTab, setActiveSettingsTab] = useState<"profile" | "settings" | "appearance" | "notifications" | "localization">("profile");
   const [profileDraft, setProfileDraft] = useState<ProfileDraft>({
     birthdate: "",
     gender: "",
@@ -1543,7 +1543,6 @@ const buildAttachmentUrl = (conversationId: string, messageId: string, attachmen
                           { value: "prefer_not_to_say", label: "Gizli tut" },
                         ]}
                         size="sm"
-                        labelPosition="none"
                       />
                     </div>
                   </div>
@@ -1564,7 +1563,6 @@ const buildAttachmentUrl = (conversationId: string, messageId: string, attachmen
                           { value: "dark", label: "Koyu" },
                         ]}
                         size="sm"
-                        labelPosition="none"
                       />
                     </div>
                     <div className="flex items-center justify-between gap-4 py-6 border-b border-border-color/10">
@@ -1633,7 +1631,6 @@ const buildAttachmentUrl = (conversationId: string, messageId: string, attachmen
                           { value: "12h", label: "12 saat" },
                         ]}
                         size="sm"
-                        labelPosition="none"
                       />
                     </div>
                     <div className="flex items-center justify-between gap-4 py-6 border-b border-border-color/10">

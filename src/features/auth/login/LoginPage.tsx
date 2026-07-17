@@ -1,3 +1,5 @@
+"use client";
+
 import { AuthTopBar } from "@/features/auth/components/AuthTopBar";
 import { AuthLegalLinks } from "@/features/auth/components/AuthLegalLinks";
 import { GoogleContinueButton } from "@/features/auth/components/GoogleContinueButton";
