@@ -1,4 +1,4 @@
-export const en = {
+export const tr = {
   common: {
     loading: "Loading...",
     save: "Save",
@@ -85,4 +85,4 @@ export const en = {
   }
 };
 
-export type Dictionary = typeof en;
+export type Dictionary = typeof tr;
