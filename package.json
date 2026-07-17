@@ -1,0 +1,37 @@
+{
+  "name": "frontend",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev --webpack -p 5173",
+    "dev:turbo": "next dev --turbo -p 5173",
+    "dev:unlock": "node -e \"require('fs').rmSync('.next/dev/lock',{force:true});\"",
+    "build": "next build --webpack",
+    "build:turbo": "next build --turbo",
+    "clean": "node -e \"require('fs').rmSync('.next',{recursive:true,force:true});\"",
+    "start": "next start -p 5173",
+    "lint": "eslint",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "next": "16.1.0",
+    "react": "19.2.3",
+    "react-dom": "19.2.3",
+    "react-markdown": "^10.1.0",
+    "react-syntax-highlighter": "^16.1.1",
+    "remark-gfm": "^4.0.1",
+    "socket.io-client": "^4.8.3",
+    "zod": "^4.2.1"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "16.1.0",
+    "tailwindcss": "^4",
+    "typescript": "^5",
+    "vitest": "^4.0.16"
+  }
+}

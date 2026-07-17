@@ -1,0 +1,191 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --background-dark: #262a33;
+  --foreground: #0f172a;
+  --foreground-muted: #475569;
+  --primary: #6d28d9;
+  --primary-hover: #5b21b6;
+  --link: #2563eb;
+  --link-hover: #1d4ed8;
+  --surface-dark: #f6f6f8;
+  --surface-lighter: #ffffff;
+  --surface-active: #eef2ff;
+  --text-secondary: #64748b;
+  --card: #ffffff;
+  --border: rgba(15, 23, 42, 0.1);
+  --border-color: rgba(15, 23, 42, 0.1);
+  --select-hover: rgba(15, 23, 42, 0.05);
+  --select-active: rgba(15, 23, 42, 0.08);
+  --scrollbar-thumb: rgba(15, 23, 42, 0.22);
+  --scrollbar-thumb-hover: rgba(15, 23, 42, 0.32);
+  color-scheme: light;
+}
+
+:root.dark {
+  /* Premium Navy (Lacivert) — Antigravity Edition */
+  --background: #000000;
+  --foreground: #ffffff;
+  --foreground-muted: #cbd5e1;
+  --primary: #4f8ef7;
+  --primary-hover: #3b79f0;
+  --link: #7eb0fc;
+  --link-hover: #a5c8ff;
+  --surface-dark: #0b1325;
+  --surface-lighter: #121e36;
+  --surface-active: #1a2d4a;
+  --text-secondary: #7a93b8;
+  --card: rgba(18, 30, 54, 0.65);
+  --border: rgba(100, 140, 220, 0.13);
+  --border-color: rgba(100, 140, 220, 0.13);
+  --select-hover: rgba(79, 142, 247, 0.07);
+  --select-active: rgba(79, 142, 247, 0.13);
+  --scrollbar-thumb: rgba(79, 142, 247, 0.22);
+  --scrollbar-thumb-hover: rgba(79, 142, 247, 0.38);
+  color-scheme: dark;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-primary-hover: var(--primary-hover);
+  --color-link: var(--link);
+  --color-link-hover: var(--link-hover);
+  --color-background-dark: var(--background-dark);
+  --color-background-light: #f6f6f8;
+  --color-surface-dark: var(--surface-dark);
+  --color-surface-lighter: var(--surface-lighter);
+  --color-surface-active: var(--surface-active);
+  --color-text-secondary: var(--text-secondary);
+  --color-border: var(--border);
+  --color-border-color: var(--border-color);
+  --font-sans: var(--font-inter, var(--font-geist-sans, system-ui));
+  --font-mono: var(--font-geist-mono, ui-monospace);
+  --font-display: var(--font-inter, var(--font-geist-sans, system-ui));
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-size: 18px;
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-display), system-ui, -apple-system, sans-serif;
+}
+
+a {
+  color: var(--link);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--link-hover);
+}
+
+.auth-theme {
+  --link: var(--foreground);
+  --link-hover: var(--foreground);
+}
+
+.auth-theme a {
+  text-decoration: none;
+}
+
+.auth-theme a:hover {
+  text-decoration: underline;
+  text-decoration-color: currentColor;
+}
+
+:root.dark .auth-theme {
+  --link: #ffffff;
+  --link-hover: #ffffff;
+}
+
+:root.dark .auth-theme {
+  --background: var(--surface-dark);
+}
+
+.auth-theme .auth-cta {
+  background: var(--primary);
+  color: #ffffff;
+  border-color: transparent;
+}
+
+.auth-theme .auth-cta:hover {
+  background: var(--primary-hover);
+  color: #ffffff;
+}
+
+.auth-theme .auth-cta:active {
+  background: var(--primary-hover);
+  color: #ffffff;
+}
+
+.auth-theme .auth-google {
+  background: var(--surface-lighter);
+  color: var(--foreground);
+  border-color: var(--border-color);
+}
+
+.auth-theme .auth-google:hover {
+  background: var(--surface-active);
+}
+
+::selection {
+  background: color-mix(in srgb, var(--link) 28%, transparent);
+  color: var(--foreground);
+}
+
+body::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.app-scrollbar::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+.app-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.app-scrollbar::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb);
+  border-radius: 3px;
+}
+
+.app-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: var(--scrollbar-thumb-hover);
+}
+
+.material-symbols-outlined {
+  font-family: "Material Symbols Outlined";
+  font-weight: normal;
+  font-style: normal;
+  font-size: 1em;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  -webkit-font-feature-settings: "liga";
+  -webkit-font-smoothing: antialiased;
+  font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
+}
