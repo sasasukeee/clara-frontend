@@ -567,7 +567,7 @@ const buildAttachmentUrl = (conversationId: string, messageId: string, attachmen
             width: att.width ?? null,
             height: att.height ?? null,
             filename: att.path.split("/").pop() ?? null,
-            previewUrl: buildAttachmentUrl(item.conversation_id, item.id, att.id),
+            previewUrl: att.path?.startsWith("http") ? att.path : buildAttachmentUrl(item.conversation_id, item.id, att.id),
           })),
         }));
       setMessages(normalized);
@@ -654,7 +654,7 @@ const buildAttachmentUrl = (conversationId: string, messageId: string, attachmen
               width: att.width ?? null,
               height: att.height ?? null,
               filename: (att.path as string).split("/").pop() ?? null,
-              previewUrl: buildAttachmentUrl(msg.conversation_id, msg.id, att.id),
+              previewUrl: att.path?.startsWith("http") ? att.path : buildAttachmentUrl(msg.conversation_id, msg.id, att.id),
             })) ?? [],
         }));
 
